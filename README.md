@@ -1,11 +1,8 @@
 #jsPDF MarkLogic Edition
 
-Rename jspdf.min.js to jspdf,min.sjs if you are using a MarkLogic version earlier than 8.0-4.
+Rename jspdf.min.js to jspdf.min.sjs if you are using a MarkLogic version earlier than 8.0-4.
 
-Include it into your code with:
-```var jsPDF = require('/dist/jsPDF.min.sjs')```
-
-If you choose to build this library, you MUST remove FileSaver.js, html2canvas, and adler32cs.js from /libs/ before building. Including any of these three breaks jsPDF within MarkLogic.
+If you choose to build this library, you may follow the original instructions to build it with one caveat: You MUST remove FileSaver.js, html2canvas, and adler32cs.js from /libs/ before building. Including any of these three currently breaks jsPDF within MarkLogic.
 
 #jsPDF
 
@@ -56,7 +53,7 @@ You can then access the site at localhost:8000
 
 ## MarkLogic Edition Credits
 
-Kevin Ford for extinsively refactoring my first attempt at this project.
+Kevin Ford for extensively refactoring my first attempt at this project.
 
 Paxton Hare for making code recommendations.
 
