@@ -1,3 +1,12 @@
+#jsPDF MarkLogic Edition
+
+Rename jspdf.min.js to jspdf,min.sjs if you are using a MarkLogic version earlier than 8.0-4.
+
+Include it into your code with:
+```var jsPDF = require('/dist/jsPDF.min.sjs')```
+
+If you choose to build this library, you MUST remove FileSaver.js, html2canvas, and adler32cs.js from /libs/ before building. Including any of these three breaks jsPDF within MarkLogic.
+
 #jsPDF
 
 [![Inline docs](http://inch-ci.org/github/MrRio/jsPDF.svg?branch=master)](http://inch-ci.org/github/MrRio/jsPDF)
@@ -11,10 +20,16 @@ You can [catch me on twitter](http://twitter.com/MrRio): [@MrRio](http://twitter
 See examples/basic.html. There's a live editor example at index.html.
 
 ```javascript
-
+declareUpdate();
+var jsPDF = require('/lib/jspdf.min.sjs');
 var doc = new jsPDF();
 doc.text(20, 20, 'Hello world.');
 doc.save('Test.pdf');
+```
+
+To verify:
+```javascript
+fn.doc('Test.pdf')
 ```
 
 **Head over to [jsPDF.com](http://jspdf.com) for details or [_here_](http://mrrio.github.io/jsPDF/) for our most recent live editor and examples.**
@@ -38,6 +53,14 @@ npm start
 ```
 
 You can then access the site at localhost:8000
+
+## MarkLogic Edition Credits
+
+Kevin Ford for extinsively refactoring my first attempt at this project.
+
+Paxton Hare for making code recommendations.
+
+The many MarkLogicians who have reached out to me in support of this project.
 
 ## Credits
 

@@ -919,18 +919,10 @@ var jsPDF = (function(global) {
 				case undefined:
 					return buildDocument();
 				case 'save':
-					if (navigator.getUserMedia) {
-						if (global.URL === undefined
-						|| global.URL.createObjectURL === undefined) {
-							return API.output('dataurlnewwindow');
-						}
-					}
-					saveAs(getBlob(), options);
-					if(typeof saveAs.unload === 'function') {
-						if(global.setTimeout) {
-							setTimeout(saveAs.unload,911);
-						}
-					}
+					var b = getBlob();
+			        var textNode = new NodeBuilder(); 
+			        textNode.addBinary(xs.hexBinary(xs.base64Binary(xdmp.base64Encode(b.data))).toString());
+			        xdmp.documentInsert(options,textNode.toNode());
 					break;
 				case 'arraybuffer':
 					return getArrayBuffer();
