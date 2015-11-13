@@ -4,7 +4,7 @@ Rename jspdf.min.js to jspdf.min.sjs if you are using a MarkLogic version earlie
 
 If you choose to build this library, you may follow the original instructions to build it with one caveat: You MUST remove FileSaver.js, html2canvas, and adler32cs.js from /libs/ before building. Including any of these three currently breaks jsPDF within MarkLogic.
 
-## Creating your first document
+## PDF Generation
 
 Create a PDF and store it within MarkLogic:
 
@@ -14,6 +14,17 @@ var jsPDF = require('/lib/jspdf.min.sjs');
 var doc = new jsPDF();
 doc.text(20, 20, 'Hello world.');
 doc.save('Test.pdf');
+```
+
+Create a binary node of a PDF and then insert it yourself into MarkLogic:
+
+```javascript
+declareUpdate();
+var jsPDF = require('/lib/jspdf.min.sjs');
+var doc = new jsPDF();
+doc.text(20, 20, 'Hello world.');
+var binNode = doc.binary();
+xdmp.documentInsert('Test.pdf', binNode, xdmp.defaultPermissions(), 'MyCollection')
 ```
 
 To verify:

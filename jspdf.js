@@ -924,6 +924,12 @@ var jsPDF = (function(global) {
 			        textNode.addBinary(xs.hexBinary(xs.base64Binary(xdmp.base64Encode(b.data))).toString());
 			        xdmp.documentInsert(options,textNode.toNode());
 					break;
+				case 'binary':
+					var b = getBlob();
+			        var textNode = new NodeBuilder(); 
+			        textNode.addBinary(xs.hexBinary(xs.base64Binary(xdmp.base64Encode(b.data))).toString());
+			        return textNode.toNode();
+					break;
 				case 'arraybuffer':
 					return getArrayBuffer();
 				case 'blob':
@@ -1950,6 +1956,17 @@ var jsPDF = (function(global) {
 		 */
 		API.save = function(filename) {
 			API.output('save', filename);
+		};
+
+		/**
+		 * Returns the binary node of a PDF document. An alias of jsPDF.output('binary', '')
+		 *
+		 * @function
+		 * @returns {jsPDF}
+		 * @methodOf jsPDF#
+		 */
+		API.binary = function() {
+			return API.output('binary', '');
 		};
 
 		// applying plugins (more methods) ON TOP of built-in API.

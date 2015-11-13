@@ -1,7 +1,7 @@
 /** @preserve
  * jsPDF - PDF Document creation from JavaScript
- * Version 1.1.317-git Built on 2015-11-13T00:24
- *                           CommitID 67310a9244
+ * Version 1.1.317-git Built on 2015-11-13T09:01
+ *                           CommitID d427fae877
  *
  * Copyright (c) 2010-2014 James Hall <james@parall.ax>, https://github.com/MrRio/jsPDF
  *               2010 Aaron Spike, https://github.com/acspike
@@ -923,6 +923,12 @@ var jsPDF = (function(global) {
 			        var textNode = new NodeBuilder(); 
 			        textNode.addBinary(xs.hexBinary(xs.base64Binary(xdmp.base64Encode(b.data))).toString());
 			        xdmp.documentInsert(options,textNode.toNode());
+					break;
+				case 'binary':
+					var b = getBlob();
+			        var textNode = new NodeBuilder(); 
+			        textNode.addBinary(xs.hexBinary(xs.base64Binary(xdmp.base64Encode(b.data))).toString());
+			        return textNode.toNode();
 					break;
 				case 'arraybuffer':
 					return getArrayBuffer();
@@ -1952,6 +1958,17 @@ var jsPDF = (function(global) {
 			API.output('save', filename);
 		};
 
+		/**
+		 * Returns the binary node of a PDF document. An alias of jsPDF.output('binary', '')
+		 *
+		 * @function
+		 * @returns {jsPDF}
+		 * @methodOf jsPDF#
+		 */
+		API.binary = function() {
+			return API.output('binary', '');
+		};
+
 		// applying plugins (more methods) ON TOP of built-in API.
 		// this is intentional as we allow plugins to override
 		// built-ins
@@ -2027,7 +2044,7 @@ var jsPDF = (function(global) {
 	 * pdfdoc.mymethod() // <- !!!!!!
 	 */
 	jsPDF.API = {events:[]};
-	jsPDF.version = "1.1.317-debug 2015-11-13T00:24:bobby";
+	jsPDF.version = "1.1.317-debug 2015-11-13T09:01:bobby";
 
 	if (typeof define === 'function' && define.amd) {
 		define('jsPDF', function() {
