@@ -4,17 +4,9 @@ Rename jspdf.min.js to jspdf.min.sjs if you are using a MarkLogic version earlie
 
 If you choose to build this library, you may follow the original instructions to build it with one caveat: You MUST remove FileSaver.js, html2canvas, and adler32cs.js from /libs/ before building. Including any of these three currently breaks jsPDF within MarkLogic.
 
-#jsPDF
-
-[![Inline docs](http://inch-ci.org/github/MrRio/jsPDF.svg?branch=master)](http://inch-ci.org/github/MrRio/jsPDF)
-
-**Generate PDF files in client-side JavaScript.**
-
-You can [catch me on twitter](http://twitter.com/MrRio): [@MrRio](http://twitter.com/MrRio) or head over to [my company's website](http://parall.ax) for consultancy. 
-
 ## Creating your first document
 
-See examples/basic.html. There's a live editor example at index.html.
+Create a PDF and store it within MarkLogic:
 
 ```javascript
 declareUpdate();
@@ -29,8 +21,6 @@ To verify:
 fn.doc('Test.pdf')
 ```
 
-**Head over to [jsPDF.com](http://jspdf.com) for details or [_here_](http://mrrio.github.io/jsPDF/) for our most recent live editor and examples.**
-
 ## Checking out the source
 
 ```bash
@@ -40,16 +30,6 @@ git clone --recursive git://github.com/MrRio/jsPDF.git
 ## Building
 
 To build, simply run the 'make' command. This will fetch all npm and bower deps, then compile minified JS files.
-
-## Running locally
-
-Due to certain restrictions that local files have, you'll need to run a web server. Just run:
-
-```
-npm start
-```
-
-You can then access the site at localhost:8000
 
 ## MarkLogic Edition Credits
 
